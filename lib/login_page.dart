@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:social_login_demo/services/authentication_service.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -17,8 +19,10 @@ class _LoginPageState extends State<LoginPage> {
       body: Center(
           child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: RaisedButton(
-          onPressed: _handleGoogleSignIn,
+        child: OutlineButton(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
+          onPressed: () async => _handleGoogleSignIn(context),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -37,5 +41,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  void _handleGoogleSignIn() {}
+  void _handleGoogleSignIn(BuildContext context) async {
+    context.read<AuthenticationService>().googleSignIn();
+  }
 }
