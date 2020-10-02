@@ -27,7 +27,7 @@ class HomePage extends StatelessWidget {
               child: OutlineButton(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(40)),
-                onPressed: () => _handleGoogleSignOut(context),
+                onPressed: () async => _handleGoogleSignOut(context),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -50,6 +50,6 @@ class HomePage extends StatelessWidget {
   }
 
   void _handleGoogleSignOut(BuildContext context) async {
-    context.read<AuthenticationService>().googleSignOut();
+    await context.read<AuthenticationService>().googleSignOut();
   }
 }
