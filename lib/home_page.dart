@@ -24,7 +24,9 @@ class HomePage extends StatelessWidget {
             Center(
                 child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: RaisedButton(
+              child: OutlineButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(40)),
                 onPressed: () => _handleGoogleSignOut(context),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
