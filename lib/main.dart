@@ -1,5 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:provider/provider.dart';
+import 'package:social_login_demo/home_page.dart';
+import 'package:social_login_demo/services/authentication_service.dart';
 
 import 'login_page.dart';
 
@@ -17,13 +22,37 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Social Login Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.deepOrange,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+    return MultiProvider(
+      providers: [
+        Provider<AuthenticationService>(
+          create: (_) =>
+              AuthenticationService(FirebaseAuth.instance, GoogleSignIn()),
+        ),
+        StreamProvider(
+          create: (context) =>
+              context.read<AuthenticationService>().authStateChanges,
+        ),
+      ],
+      child: MaterialApp(
+        title: 'Social Login Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.deepOrange,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        home: LandingPage(),
       ),
-      home: LoginPage(),
     );
+  }
+}
+
+class LandingPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final firebaseUser = context.watch<User>();
+    // print(firebaseUser);
+    if (firebaseUser == null) {
+      return LoginPage();
+    }
+    return HomePage();
   }
 }
