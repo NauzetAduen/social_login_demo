@@ -53,6 +53,6 @@ class LandingPage extends StatelessWidget {
     if (firebaseUser == null) {
       return LoginPage();
     }
-    return HomePage();
+    return HomePage(firebaseUser);
   }
 }

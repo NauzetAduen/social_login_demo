@@ -1,9 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:social_login_demo/services/authentication_service.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
+  final User firebaseUser;
+
+  const HomePage(this.firebaseUser);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,8 +20,7 @@ class HomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Username:"),
-            Text("UserId:"),
+            Text("Username: ${firebaseUser.displayName}"),
             Center(
                 child: Padding(
               padding: const EdgeInsets.all(8.0),
