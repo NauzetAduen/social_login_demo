@@ -50,6 +50,6 @@ class HomePage extends StatelessWidget {
   }
 
   void _handleGoogleSignOut(BuildContext context) async {
-    await context.read<AuthenticationService>().googleSignOut();
+    await context.read<AuthenticationServiceImpl>().googleSignOut();
   }
 }

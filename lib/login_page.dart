@@ -42,6 +42,6 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _handleGoogleSignIn(BuildContext context) async {
-    context.read<AuthenticationService>().googleSignIn();
+    context.read<AuthenticationServiceImpl>().googleSignIn();
   }
 }

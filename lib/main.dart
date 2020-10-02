@@ -24,13 +24,13 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        Provider<AuthenticationService>(
+        Provider<AuthenticationServiceImpl>(
           create: (_) =>
-              AuthenticationService(FirebaseAuth.instance, GoogleSignIn()),
+              AuthenticationServiceImpl(FirebaseAuth.instance, GoogleSignIn()),
         ),
         StreamProvider(
           create: (context) =>
-              context.read<AuthenticationService>().authStateChanges,
+              context.read<AuthenticationServiceImpl>().authStateChanges,
         ),
       ],
       child: MaterialApp(
