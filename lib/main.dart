@@ -3,10 +3,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
-import 'package:social_login_demo/home_page.dart';
-import 'package:social_login_demo/services/authentication_service.dart';
 
+import 'home_page.dart';
 import 'login_page.dart';
+import 'services/authentication_service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
